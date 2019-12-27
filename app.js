@@ -27,7 +27,16 @@ const app = express();
 app.use(morgan('dev'));
 
 // TODO setup your api routes here
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, DELETE, GET');
+    return res.status(200).end();
+  }
+});
 app.use('/api', routes);
+
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
   res.json({
