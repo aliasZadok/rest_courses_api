@@ -1,7 +1,6 @@
 'use strict';
 
 // load modules
-const cors = require('cors');
 const express = require('express');
 const morgan = require('morgan');
 
@@ -23,8 +22,6 @@ const app = express();
     console.error('Error connecting to the database: ', error);
   }
 })();
-
-app.use(cors());
 
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
